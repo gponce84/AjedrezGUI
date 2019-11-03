@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clases\Casilla.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="clases\Alfil.cs" />
     <Compile Include="clases\Caballo.cs" />
     <Compile Include="clases\Peon.cs" />

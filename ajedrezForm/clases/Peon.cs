@@ -11,8 +11,8 @@ namespace ajedrezForm
     {
         private Boolean primerMovimiento;
 
-        public Peon(string nombre, string color, Point posicionPieza)
-            :base(nombre,color, posicionPieza)
+        public Peon(string color)
+            :base(color)
         {
             primerMovimiento = false;
             retornarPiezaColor(color);

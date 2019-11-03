@@ -12,8 +12,8 @@ namespace ajedrezForm
     {
        
 
-        public Caballo(string nombre, string color, Point posicionPieza)
-            :base (nombre,color, posicionPieza)
+        public Caballo(string color)
+            :base (color)
          {
             retornarPiezaColor(color);
          }

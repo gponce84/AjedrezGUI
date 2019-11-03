@@ -9,8 +9,8 @@ namespace ajedrezForm
 {
     class Reina : Piezas
     {
-        public Reina(string nombre, string color, Point posicionPieza)
-            : base(nombre, color, posicionPieza)
+        public Reina(string color)
+            : base(color)
         {
             retornarPiezaColor(color);
 

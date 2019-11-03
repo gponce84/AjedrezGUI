@@ -43,3 +43,12 @@ C:\Users\dimas\Source\Repos\AjedrezGUI\ajedrezForm\obj\Debug\ajedrezForm.Propert
 C:\Users\dimas\Source\Repos\AjedrezGUI\ajedrezForm\obj\Debug\ajedrezForm.csproj.GenerateResource.cache
 C:\Users\dimas\Source\Repos\AjedrezGUI\ajedrezForm\obj\Debug\ajedrezForm.exe
 C:\Users\dimas\Source\Repos\AjedrezGUI\ajedrezForm\obj\Debug\ajedrezForm.pdb
+C:\Users\Agustin Laporta\Source\Repos\AjedrezGUI\ajedrezForm\bin\Debug\ajedrezForm.exe.config
+C:\Users\Agustin Laporta\Source\Repos\AjedrezGUI\ajedrezForm\obj\Debug\ajedrezForm.exe
+C:\Users\Agustin Laporta\Source\Repos\AjedrezGUI\ajedrezForm\obj\Debug\ajedrezForm.pdb
+C:\Users\Agustin Laporta\Source\Repos\AjedrezGUI\ajedrezForm\obj\Debug\ajedrezForm.csprojResolveAssemblyReference.cache
+C:\Users\Agustin Laporta\Source\Repos\AjedrezGUI\ajedrezForm\obj\Debug\ajedrezForm.Form1.resources
+C:\Users\Agustin Laporta\Source\Repos\AjedrezGUI\ajedrezForm\obj\Debug\ajedrezForm.Properties.Resources.resources
+C:\Users\Agustin Laporta\Source\Repos\AjedrezGUI\ajedrezForm\obj\Debug\ajedrezForm.csproj.GenerateResource.Cache
+C:\Users\Agustin Laporta\Source\Repos\AjedrezGUI\ajedrezForm\bin\Debug\ajedrezForm.exe
+C:\Users\Agustin Laporta\Source\Repos\AjedrezGUI\ajedrezForm\bin\Debug\ajedrezForm.pdb

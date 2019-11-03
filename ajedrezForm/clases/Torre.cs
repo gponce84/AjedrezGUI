@@ -1,19 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ajedrezForm
 {
     class Torre  : Piezas
     {
-        public Torre(string nombre, string color, Point posicionPieza)
-            :base(nombre,color, posicionPieza)
+        public Torre(string color)
+            :base(color)
         {
             retornarPiezaColor(color);
-
+            this.Nombre = this.GetType().Name;
         }
 
         public Bitmap retornarPiezaColor(String color)

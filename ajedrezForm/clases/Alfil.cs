@@ -9,8 +9,8 @@ namespace ajedrezForm
 {
     class Alfil : Piezas
     {
-        public Alfil(string nombre, string color, Point posicionPieza)
-            :base(nombre,color, posicionPieza)
+        public Alfil(string color)
+            :base(color)
         {
             retornarPiezaColor(color);
         }

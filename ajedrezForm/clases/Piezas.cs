@@ -12,18 +12,18 @@ namespace ajedrezForm
     {
         private string nombre;
         private string color;
-        private Point posicionPieza{ get; set; }
+        private Point posicionPieza{ get; set; }//OBSOLETO
        
-        public String[,] movimeintoPermitido { get; set; }
+        public String[,] movimeintoPermitido { get; set; }//OBSOLETO
         public Point [] Moves { get; set; }
         private Bitmap img;
         
 
-        public Piezas(string nombre, string color, Point posicionPieza)
+        public Piezas(string color)
         {
-            this.nombre = nombre;
+            this.Nombre = this.GetType().Name;
             this.color = color;
-            this.posicionPieza = posicionPieza;
+            //this.posicionPieza = posicionPieza; //OBSOLETO
             
         }
 
@@ -37,9 +37,10 @@ namespace ajedrezForm
 
         }
 
-        public  void posicionesPosiblres()
+        public virtual List<Point> Movimientos()
         {
-
+            List<Point> lp = new List<Point>(); 
+            return lp;
         }
 
         public string Nombre
