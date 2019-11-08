@@ -11,8 +11,7 @@ using ajedrezForm.clases;
 
 namespace ajedrezForm
 {
- // ********************** probando github #
- //CAMBIAR COLOR DE MOVIMIENTOS POSIBLES
+
  
     public partial class Form1 : Form
     {

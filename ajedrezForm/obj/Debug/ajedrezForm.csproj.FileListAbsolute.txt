@@ -126,3 +126,13 @@ C:\Users\Alumno\Desktop\AjedrezGUI 3.0.0\ajedrezForm\obj\Debug\ajedrezForm.Form1
 C:\Users\Alumno\Desktop\AjedrezGUI 3.0.0\ajedrezForm\obj\Debug\ajedrezForm.Form2.resources
 C:\Users\Alumno\Desktop\AjedrezGUI 3.0.0\ajedrezForm\obj\Debug\ajedrezForm.Properties.Resources.resources
 C:\Users\Alumno\Desktop\AjedrezGUI 3.0.0\ajedrezForm\obj\Debug\ajedrezForm.csproj.GenerateResource.Cache
+C:\Users\dimas\Desktop\Gui\AjedrezGUI\ajedrezForm\bin\Debug\ajedrezForm.exe.config
+C:\Users\dimas\Desktop\Gui\AjedrezGUI\ajedrezForm\bin\Debug\ajedrezForm.exe
+C:\Users\dimas\Desktop\Gui\AjedrezGUI\ajedrezForm\bin\Debug\ajedrezForm.pdb
+C:\Users\dimas\Desktop\Gui\AjedrezGUI\ajedrezForm\obj\Debug\ajedrezForm.csprojAssemblyReference.cache
+C:\Users\dimas\Desktop\Gui\AjedrezGUI\ajedrezForm\obj\Debug\ajedrezForm.Form1.resources
+C:\Users\dimas\Desktop\Gui\AjedrezGUI\ajedrezForm\obj\Debug\ajedrezForm.Form2.resources
+C:\Users\dimas\Desktop\Gui\AjedrezGUI\ajedrezForm\obj\Debug\ajedrezForm.Properties.Resources.resources
+C:\Users\dimas\Desktop\Gui\AjedrezGUI\ajedrezForm\obj\Debug\ajedrezForm.csproj.GenerateResource.cache
+C:\Users\dimas\Desktop\Gui\AjedrezGUI\ajedrezForm\obj\Debug\ajedrezForm.exe
+C:\Users\dimas\Desktop\Gui\AjedrezGUI\ajedrezForm\obj\Debug\ajedrezForm.pdb
