@@ -9,12 +9,9 @@ namespace ajedrezForm
 {
     class Peon : Piezas
     {
-        private Boolean primerMovimiento;
-
         public Peon(string color)
             :base(color)
         {
-            primerMovimiento = false;
             retornarPiezaColor(color);
 
         }
@@ -32,15 +29,57 @@ namespace ajedrezForm
             }
         }
 
-        public void movimientos()
+        public override List<Point> Movimientos(Point pos)
         {
-            Moves = new Point[]
+            List<Point> lp = new List<Point>();
+            Point p;
+            if(Color == "B")
             {
-                new Point( 0 -1 ), // al frente solo puede mover, no atacar
-                new Point( 0,-2 ), // al frente 2 casilleros solo puede mover, no atacar y se puede realizar si es el primer movimiento del peon
-                new Point(-1,-1 ), // en diagonal solo puede atacar, no mover
-                new Point( 1,-1 ), // en diagonal solo puede atacar, no mover
-            };
+                if(pos.X < 7)
+                {
+                    p = new Point(pos.X + 1, pos.Y);
+                    lp.Add(p);
+                }                
+                if(pos.X == 1)
+                {
+                    p = new Point(pos.X + 2, pos.Y);
+                    lp.Add(p);
+                }
+                if(pos.Y > 0 && pos.X < 7)
+                {
+                    p = new Point(pos.X + 1, pos.Y - 1);
+                    lp.Add(p);
+                }
+                if (pos.Y < 7 && pos.X < 7)
+                {
+                    p = new Point(pos.X + 1, pos.Y + 1);
+                    lp.Add(p);
+                }
+            }
+            else if (Color == "N")
+            {
+                if (pos.X < 8)
+                {
+                    p = new Point(pos.X - 1, pos.Y);
+                    lp.Add(p);
+                }
+                if (pos.X == 6)
+                {
+                    p = new Point(pos.X - 2, pos.Y);
+                    lp.Add(p);
+                }
+                if (pos.Y > 0)
+                {
+                    p = new Point(pos.X - 1, pos.Y - 1);
+                    lp.Add(p);
+                }
+                if (pos.Y < 7)
+                {
+                    p = new Point(pos.X - 1, pos.Y + 1);
+                    lp.Add(p);
+                }
+            }
+            return lp;
         }
 
         public void mover(int posicionX, int posicionY)

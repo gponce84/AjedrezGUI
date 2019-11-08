@@ -32,36 +32,34 @@ namespace ajedrezForm
             }
         }
 
-        public void movimientos()
+        public override List<Point> Movimientos(Point pos)
         {
-            Moves = new Point[]
-             {
-                new Point(-1,-2),
-                new Point( 1,-2),
-
-                new Point(-1, 2),
-                new Point( 1, 2),
-
-                new Point( 2,-1),
-                new Point( 2, 1),
-
-                new Point(-2,-1),
-                new Point(-2, 1),
-             };
-
-
-        }
-
-
-        /*
-        public  void posicionInicial()
-        {
-            throw new NotImplementedException();
-        }
-
-        public  void posicionesPosiblres()
-        {
-            throw new NotImplementedException();
-        }*/
+            List<Point> lp = new List<Point>();
+            Point p = new Point(pos.X - 2, pos.Y + 1);
+            if (p.X < 8 && p.X >= 0 && p.Y < 8 && p.Y >= 0)
+                lp.Add(p);
+            p = new Point(pos.X - 2, pos.Y - 1);
+            if (p.X < 8 && p.X >= 0 && p.Y < 8 && p.Y >= 0)
+                lp.Add(p);
+            p = new Point(pos.X + 2, pos.Y + 1);
+            if (p.X < 8 && p.X >= 0 && p.Y < 8 && p.Y >= 0)
+                lp.Add(p);
+            p = new Point(pos.X + 2, pos.Y - 1);
+            if (p.X < 8 && p.X >= 0 && p.Y < 8 && p.Y >= 0)
+                lp.Add(p);
+            p = new Point(pos.X + 1, pos.Y + 2);
+            if (p.X < 8 && p.X >= 0 && p.Y < 8 && p.Y >= 0)
+                lp.Add(p);
+            p = new Point(pos.X - 1, pos.Y + 2);
+            if (p.X < 8 && p.X >= 0 && p.Y < 8 && p.Y >= 0)
+                lp.Add(p);
+            p = new Point(pos.X + 1, pos.Y - 2);
+            if (p.X < 8 && p.X >= 0 && p.Y < 8 && p.Y >= 0)
+                lp.Add(p);
+            p = new Point(pos.X - 1, pos.Y - 2);
+            if (p.X < 8 && p.X >= 0 && p.Y < 8 && p.Y >= 0)
+                lp.Add(p);
+            return lp;
+        }        
     }
 }

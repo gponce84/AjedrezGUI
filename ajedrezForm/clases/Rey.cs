@@ -13,7 +13,6 @@ namespace ajedrezForm
             : base( color)
         {
             retornarPiezaColor(color);
-
         }
 
         public Bitmap retornarPiezaColor(String color)
@@ -30,22 +29,51 @@ namespace ajedrezForm
 
         }
 
-        public void movimientos()
+        public override List<Point> Movimientos(Point pos)
         {
-            Moves = new Point[]
-             {
-                new Point(-1,-1 ),
-                new Point(-1, 0 ),
-                new Point(-1, 1 ),
-                new Point( 0,-1 ),
-                new Point( 0, 1 ),
-                new Point( 1,-1 ),
-                new Point( 1, 0 ),
-                new Point( 1, 1 ),
-                //new Point(2, 0 ), // enroque
-                //new Point(-2, 0),// enroque
-             };
-            
+            List<Point> lp = new List<Point>();
+            Point p;
+            if (pos.X > 0)              //ARRIBA
+            {
+                p = new Point(pos.X - 1, pos.Y);
+                lp.Add(p);
+            }
+            if(pos.X > 0 && pos.Y < 7)  //ARRIBA DERECHA
+            {
+                p = new Point(pos.X - 1, pos.Y + 1);
+                lp.Add(p);
+            }
+            if (pos.X > 0 && pos.Y > 0) //ARRIBA IZQUIERDA
+            {
+                p = new Point(pos.X - 1, pos.Y - 1);
+                lp.Add(p);
+            }
+            if (pos.Y < 7) //DERECHA
+            {
+                p = new Point(pos.X, pos.Y + 1);
+                lp.Add(p);
+            }
+            if (pos.Y > 0) //IZQUIERDA
+            {
+                p = new Point(pos.X, pos.Y - 1);
+                lp.Add(p);
+            }
+            if (pos.X < 7 && pos.Y > 0) //ABAJO IZQUIERDA
+            {
+                p = new Point(pos.X + 1, pos.Y - 1);
+                lp.Add(p);
+            }
+            if (pos.X < 7 && pos.Y < 7) //ABAJO DERECHA
+            {
+                p = new Point(pos.X + 1, pos.Y + 1);
+                lp.Add(p);
+            }
+            if (pos.X < 7)              //ARRIBA
+            {
+                p = new Point(pos.X + 1, pos.Y);
+                lp.Add(p);
+            }
+            return lp;
         }
     }
 }

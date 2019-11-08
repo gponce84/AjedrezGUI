@@ -11,24 +11,31 @@ using ajedrezForm.clases;
 
 namespace ajedrezForm
 {
- // ********************** probando github 
+ // ********************** probando github #
+ //CAMBIAR COLOR DE MOVIMIENTOS POSIBLES
  
     public partial class Form1 : Form
     {
         Tablero tbr = new Tablero();
-        //public static Piezas[,] piezas = new Piezas[8,8];
-        public  Piezas[,] piezas = new Piezas[8, 8];
-        public Button lastButton;
-    
+        public Piezas[,] piezas = new Piezas[8, 8];
+        public Casilla lastButton;
+        string turno = "B";
+
         public Form1()
         {
-            InitializeComponent();
-            
+            InitializeComponent();            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             crearTablero();
+            Form2 frm2 = new Form2(panel1.Width / 8, panel1.Height / 8, this.Location.X, this.Location.Y, '-');
+            Form2 frm3 = new Form2(panel1.Width / 8, panel1.Height / 8, this.Location.X, this.Location.Y, '+');
+            this.AddOwnedForm(frm2);
+            this.AddOwnedForm(frm3);
+            frm2.Show();
+            frm3.Show();
+            this.Text = "Turno Blancas";
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -43,7 +50,6 @@ namespace ajedrezForm
                 for (int c = 0; c < 8; c++)
                 {
                     p = new Point(f, c);
-                    //tbr.inicializarTablero(); //OBSOLETO
                     var csl = new Casilla();
                     csl.Pieza = Tablero.nuevaPieza[f,c]; 
                     csl.Size = _size;
@@ -58,11 +64,9 @@ namespace ajedrezForm
 
                     if (Tablero.nuevaPieza[f, c] != null)
                     {
-                        csl.Name = Tablero.nuevaPieza[f, c].Color;
                         csl.BackgroundImage = Tablero.nuevaPieza[f, c].Img;
                         csl.BackgroundImageLayout = ImageLayout.Zoom;
                     }
-                    
                 }
         }
 
@@ -70,45 +74,80 @@ namespace ajedrezForm
         {
             Casilla csl = (Casilla)sender;
             Size _size = new Size(panel1.Width / 8, panel1.Height / 8);
-            
-            MessageBox.Show(Tablero.nuevaPieza[csl.Location.Y / _size.Height, csl.Location.X / _size.Width].Nombre);
-            //MessageBox.Show(Tablero.nuevaPieza[btn.Location.Y / _size.Height, btn.Location.X / _size.Width].GetType().ToString().Substring(12));
-            for (int x = 0; x < 8; x++)
-                for (int y = 0; y < 8; y++)
-                {
-                    //if (btn.Location.Equals(piezas[f,c].))
-                }
-            int f = 1;
-            int c = 2;
-            panel1.Controls[8*f+c].BackColor = Color.Aqua;
-              if (lastButton !=null && lastButton.BackgroundImage != null && !(csl.Name.Equals(lastButton.Name, StringComparison.InvariantCultureIgnoreCase)))
-                {
-                    csl.BackgroundImage = lastButton.BackgroundImage;
-                    csl.BackgroundImageLayout = ImageLayout.Zoom;
-                    csl.Name = lastButton.Name;
-                    lastButton.BackgroundImage = null;
-                    lastButton.Name = null;
-                    lastButton = null;
-                    this.Cursor = Cursors.Default;
-
-                
-            }
-            else
+            List<Point> list_p = new List<Point>();
+            int ctrl_i = 8 * csl.Pos.X + csl.Pos.Y;
+            if(lastButton != null && csl.BackgroundImage == lastButton.BackgroundImage)
             {
-                if(csl.BackgroundImage != null)
+                this.Cursor = Cursors.Default;
+                Limpiar_Colores();
+                lastButton = null;
+            }
+            else if (lastButton !=null && lastButton.BackgroundImage != null && csl.Pieza != lastButton.Pieza &&
+                csl.BackColor == Color.FromArgb(60,0, 0, 255)/* && !(csl.Pieza.Nombre.Equals(lastButton.Pieza.Nombre, StringComparison.InvariantCultureIgnoreCase))*/)
+            {
+                switch (csl.Pieza.Color)
                 {
+                    case "B":
+                        ((Form2)(OwnedForms[0])).Eliminar_Pieza(csl.BackgroundImage);
+                        break;
+                    case "N":
+                        ((Form2)(OwnedForms[1])).Eliminar_Pieza(csl.BackgroundImage);
+                        break;
+                }
+                if ( csl.Pieza.Nombre == "Rey" && csl.Pieza.Color != lastButton.Pieza.Color )
+                {
+                    if(csl.Pieza.Color == "B")
+                    {
+                        MessageBox.Show("Ganan Negras");
+                        Application.Exit();
+                    }
+                    else if(csl.Pieza.Color == "N")
+                    {
+                        MessageBox.Show("Ganan Blancas");
+                        Application.Exit();
+                    }
+                }                
+                int lb_i = 8 * lastButton.Pos.X + lastButton.Pos.Y;
+                Piezas pn = new Piezas("V");
+                csl.BackgroundImage = lastButton.BackgroundImage;
+                csl.Pieza.Color = lastButton.Pieza.Color;
+                csl.BackgroundImageLayout = ImageLayout.Zoom;
+                csl.Pieza.Nombre = lastButton.Pieza.Nombre;
+                csl.Pieza = lastButton.Pieza;
+                ((Casilla)panel1.Controls[lb_i]).Pieza = pn;
+                lastButton.BackgroundImage = null;
+                lastButton.Name = null;
+                lastButton = null;
+                
+                Limpiar_Colores();
+
+                this.Cursor = Cursors.Default;
+                if (turno == "B")
+                {
+                    this.Text = "Turno Negras";
+                    turno = "N";
+                }                   
+                else
+                {
+                    this.Text = "Turno Blancas";
+                    turno = "B";
+                }                  
+            }
+            else if( (Cursor == Cursors.Default || csl.Pieza.Color == lastButton.Pieza.Color)&&
+                    turno == csl.Pieza.Color)
+            {
+
+                if (csl.BackgroundImage != null)
                     this.Cursor = CreateCursor((Bitmap)csl.BackgroundImage, new Size(50, 50));
-                }
+                if(lastButton != null)
+                    if (csl.Pieza.Color == lastButton.Pieza.Color && csl.Pieza != lastButton.Pieza)
+                        Limpiar_Colores();
+                    
 
-                List<Point> list_p = new List<Point>();
-                Casilla cs = (Casilla)panel1.Controls[8 * csl.Pos.X + csl.Pos.Y];
-                list_p = cs.Pieza.Movimientos();
 
-                foreach (Point p in list_p)
-                {
-                    panel1.Controls[8 * f + c].BackColor = Color.Aqua;
-                }
-                lastButton = csl;               
+                list_p = csl.Pieza.Movimientos(csl.Pos);
+                Pintar_MovimientosV2(list_p, csl);                
+                lastButton = csl;             
             }    
         }
 
@@ -123,6 +162,99 @@ namespace ajedrezForm
             bm = new Bitmap(bm, size);
             bm.MakeTransparent();
             return new Cursor(bm.GetHicon());
+        }
+
+        public void Limpiar_Colores()
+        {
+            foreach (Casilla cs in panel1.Controls)
+            {
+                int cs_i = 8 * cs.Pos.X + cs.Pos.Y;
+                if (cs.BackColor == Color.FromArgb(60,0, 0, 255))
+                    panel1.Controls[cs_i].BackColor = cs.Clr;
+            }
+        }
+
+        public void Pintar_MovimientosV2(List<Point> list_p, Casilla csl)
+        {
+            Point u = new Point(0, csl.Pos.Y);
+            Point ur = new Point(0, 20);
+            Point r = new Point(csl.Pos.X, 7);
+            Point dr = new Point(7, 7);
+            Point d = new Point(7, csl.Pos.Y);
+            Point dl = new Point(20, 0);
+            Point l = new Point(csl.Pos.X, 0);
+            Point ul = new Point(0, 0);
+
+            foreach (Point p in list_p)
+            {
+                int ctrl_i = 8 * p.X + p.Y;
+                Casilla cp = ((Casilla)panel1.Controls[ctrl_i]);
+                if (csl.Pieza.Nombre == "Peon")
+                {
+                    ur = new Point(csl.Pos.X, csl.Pos.Y); dr = new Point(csl.Pos.X, csl.Pos.Y);
+                    ul = new Point(csl.Pos.X, csl.Pos.Y); dl = new Point(csl.Pos.X, csl.Pos.Y);
+                    if (cp.Pos.Y != csl.Pos.Y && cp.Pieza.Nombre != "Piezas")
+                        Pintar_Casilla(ctrl_i, csl);
+                    else if (cp.Pieza.Nombre != "Piezas")
+                    {
+                        u.X = csl.Pos.X; d.X = csl.Pos.X;
+                    }
+                }
+                if (cp.Pieza.Nombre != "Piezas")
+                {
+
+                    if (cp.Pos.Y > csl.Pos.Y)
+                    {
+                        if (cp.Pos.X == csl.Pos.X && p.Y < r.Y)
+                            r.Y = p.Y;
+                        else if (cp.Pos.X < csl.Pos.X && cp.Pos.X > ur.X && p.Y < ur.Y)
+                            ur = p;
+                        else if (cp.Pos.X > csl.Pos.X && cp.Pos.X < dr.X && p.Y < dr.Y)
+                            dr = p;
+                    }
+                    else if (cp.Pos.Y < csl.Pos.Y)
+                    {
+                        if (cp.Pos.X == csl.Pos.X && p.Y > l.Y)
+                            l = p;
+                        else if (cp.Pos.X < csl.Pos.X && cp.Pos.X > ul.X && p.Y > ul.Y)
+                            ul = p;
+                        else if (cp.Pos.X > csl.Pos.X && cp.Pos.X < dl.X && p.Y > dl.Y)
+                            dl = p;
+                    }
+                    else if (cp.Pos.X < csl.Pos.X && p.X > u.X)
+                        u = p;
+                    else if (cp.Pos.X > csl.Pos.X && p.X < d.X)
+                        d = p;
+                }
+                if (cp.Pos.Y > csl.Pos.Y)
+                {
+                    if (cp.Pos.X == csl.Pos.X && p.Y <= r.Y)
+                        Pintar_Casilla(ctrl_i, csl);
+                    else if (cp.Pos.X < csl.Pos.X && (p.X + p.Y != ur.X + ur.Y || p == ur || ur.X + ur.Y == 20))
+                        Pintar_Casilla(ctrl_i, csl);
+                    else if (cp.Pos.X > csl.Pos.X && (p.X - p.Y != dr.X - dr.Y || p == dr || dr.X + dr.Y == 14))
+                        Pintar_Casilla(ctrl_i, csl);
+                }
+                else if (cp.Pos.Y < csl.Pos.Y)
+                {
+                    if (cp.Pos.X == csl.Pos.X && p.Y >= l.Y)
+                        Pintar_Casilla(ctrl_i, csl);
+                    else if (cp.Pos.X < csl.Pos.X && (p.X - p.Y != ul.X - ul.Y || p == ul || ul.X + ul.Y == 0))
+                        Pintar_Casilla(ctrl_i, csl);
+                    else if (cp.Pos.X > csl.Pos.X && (p.X + p.Y != dl.X + dl.Y || p == dl || dl.X + dl.Y == 20))
+                        Pintar_Casilla(ctrl_i, csl);
+                }
+                else if (cp.Pos.X < csl.Pos.X && p.X >= u.X)
+                    Pintar_Casilla(ctrl_i, csl);
+                else if (cp.Pos.X > csl.Pos.X && p.X <= d.X)
+                    Pintar_Casilla(ctrl_i, csl);
+            }
+        }
+
+        public void Pintar_Casilla(int i, Casilla csl)
+        {
+            if (((Casilla)panel1.Controls[i]).Pieza.Color != csl.Pieza.Color)
+                panel1.Controls[i].BackColor = Color.FromArgb(60,0, 0, 255);
         }
     }
 }

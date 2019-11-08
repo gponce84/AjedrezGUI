@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using ajedrezForm.clases;
 
 namespace ajedrezForm
 {
@@ -12,35 +16,20 @@ namespace ajedrezForm
     {
         private string nombre;
         private string color;
-        private Point posicionPieza{ get; set; }//OBSOLETO
-       
-        public String[,] movimeintoPermitido { get; set; }//OBSOLETO
-        public Point [] Moves { get; set; }
+
         private Bitmap img;
         
 
         public Piezas(string color)
         {
             this.Nombre = this.GetType().Name;
-            this.color = color;
-            //this.posicionPieza = posicionPieza; //OBSOLETO
-            
+            this.color = color;            
         }
 
-
-        public void imagenPieza()
+        public virtual List<Point> Movimientos(Point pos)
         {
-            
-        }
-        public  void posicionInicial()
-        {
-
-        }
-
-        public virtual List<Point> Movimientos()
-        {
-            List<Point> lp = new List<Point>(); 
-            return lp;
+            List<Point> pp = new List<Point>(); 
+            return pp;
         }
 
         public string Nombre
